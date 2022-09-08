@@ -19,7 +19,7 @@ namespace MauiApp_Demo.Services
 
             movieList = JsonSerializer.Deserialize<List<Movie>>(json);
 
-            return movieList;
+            return movieList.Skip(30).Take(10).ToList();
         }
     }
 }
