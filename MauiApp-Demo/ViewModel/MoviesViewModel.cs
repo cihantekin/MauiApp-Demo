@@ -14,6 +14,7 @@ namespace MauiApp_Demo.ViewModel
 
         public MoviesViewModel(MovieService movieService)
         {
+            Title = "Movies";
             this._movieService = movieService;
         }
 

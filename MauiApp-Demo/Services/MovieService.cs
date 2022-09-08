@@ -13,7 +13,8 @@ namespace MauiApp_Demo.Services
                 return movieList;
             }
 
-            using StreamReader reader = new("movies.json");
+            using var stream = await FileSystem.OpenAppPackageFileAsync("movies.json");
+            using StreamReader reader = new(stream);
             string json = await reader.ReadToEndAsync();
 
             movieList = JsonSerializer.Deserialize<List<Movie>>(json);
