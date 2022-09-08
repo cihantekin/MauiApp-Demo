@@ -4,7 +4,8 @@
              x:Class="MauiApp_Demo.MainPage"
              xmlns:model="clr-namespace:MauiApp_Demo.Models"
              xmlns:viewmodel="clr-namespace:MauiApp_Demo.ViewModel"
-             x:DataType="viewmodel:MoviesViewModel">
+             x:DataType="viewmodel:MoviesViewModel"
+             Title="Movies">
 
     <Grid 
         ColumnDefinitions="*"
@@ -13,12 +14,17 @@
         BackgroundColor="AliceBlue">
 
         <CollectionView ItemsSource="{Binding Movies}" BackgroundColor="Transparent" SelectionMode="None">
+            <CollectionView.EmptyView>
+                <StackLayout Padding="100">
+                    <Image HorizontalOptions="CenterAndExpand" Source="nodata.png" VerticalOptions="CenterAndExpand" />
+                </StackLayout>
+            </CollectionView.EmptyView>
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="model:Movie">
-                    <Grid Margin="5">
+                    <Grid Margin="2">
                         <Frame HeightRequest="125" HasShadow="True" CornerRadius="10" IsClippedToBounds="True" BorderColor="#DDDDDD">
                             <Grid ColumnDefinitions="Auto,*" ColumnSpacing="5">
-                                <Image Grid.Column="0" WidthRequest="200" HeightRequest="200" Source="{Binding Poster}" Aspect="AspectFill" />
+                                <Image Grid.Column="0" WidthRequest="175" HeightRequest="175" Source="{Binding Poster}" Aspect="AspectFill" />
                                 <VerticalStackLayout Grid.Column="1">
                                     <Label  Text="{Binding Title}" FontAttributes="Bold" />
                                     <Label Text="{Binding Year}" FontAttributes="Italic" />
