@@ -18,7 +18,7 @@ namespace MauiApp_Demo.Services
             string json = await reader.ReadToEndAsync();
 
             movieList = JsonSerializer.Deserialize<List<Movie>>(json);
-            movieList = movieList.Skip(30).Take(10).ToList();
+            movieList = movieList.Take(25).ToList();
 
             return movieList;
         }
