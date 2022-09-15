@@ -54,5 +54,11 @@ namespace MauiApp_Demo.ViewModel
                 IsRefreshing = false;
             }
         }
+
+        [RelayCommand]
+        async Task GetSearchedMoviesAsync(string text)
+        {
+
+        }
     }
 }
