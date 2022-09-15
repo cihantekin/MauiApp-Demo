@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using MauiApp_Demo.Models;
 using MauiApp_Demo.Services;
 using System.Collections.ObjectModel;
@@ -11,6 +12,9 @@ namespace MauiApp_Demo.ViewModel
         public ObservableCollection<Movie> Movies { get; } = new();
 
         private readonly MovieService _movieService;
+
+        [ObservableProperty]
+        bool isRefreshing;
 
         public MoviesViewModel(MovieService movieService)
         {
@@ -47,6 +51,7 @@ namespace MauiApp_Demo.ViewModel
             finally
             {
                 IsBusy = false;
+                IsRefreshing = false;
             }
         }
     }

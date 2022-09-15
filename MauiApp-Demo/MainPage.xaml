@@ -13,28 +13,30 @@
         RowDefinitions="*,Auto"
         BackgroundColor="AliceBlue">
 
-        <CollectionView ItemsSource="{Binding Movies}" BackgroundColor="Transparent" SelectionMode="None">
-            <CollectionView.EmptyView>
-                <StackLayout Padding="100">
-                    <Image HorizontalOptions="CenterAndExpand" Source="nodata.png" VerticalOptions="CenterAndExpand" />
-                </StackLayout>
-            </CollectionView.EmptyView>
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="model:Movie">
-                    <Grid Margin="2">
-                        <Frame HeightRequest="125" HasShadow="True" CornerRadius="10" IsClippedToBounds="True" BorderColor="#DDDDDD">
-                            <Grid ColumnDefinitions="Auto,*" ColumnSpacing="5">
-                                <Image Grid.Column="0" WidthRequest="175" HeightRequest="175" Source="{Binding Poster}" Aspect="AspectFill" />
-                                <VerticalStackLayout Grid.Column="1">
-                                    <Label  Text="{Binding Title}" FontAttributes="Bold" />
-                                    <Label Text="{Binding Year}" FontAttributes="Italic" />
-                                </VerticalStackLayout>
-                            </Grid>
-                        </Frame>
-                    </Grid>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+        <RefreshView Command="{Binding GetMoviesCommand}" IsRefreshing="{Binding IsRefreshing}" >
+            <CollectionView ItemsSource="{Binding Movies}" BackgroundColor="Transparent" SelectionMode="None">
+                <CollectionView.EmptyView>
+                    <StackLayout Padding="100">
+                        <Image HorizontalOptions="CenterAndExpand" Source="nodata.png" VerticalOptions="CenterAndExpand" />
+                    </StackLayout>
+                </CollectionView.EmptyView>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Movie">
+                        <Grid Margin="2">
+                            <Frame HeightRequest="125" HasShadow="True" CornerRadius="10" IsClippedToBounds="True" BorderColor="#DDDDDD">
+                                <Grid ColumnDefinitions="Auto,*" ColumnSpacing="5">
+                                    <Image Grid.Column="0" WidthRequest="175" HeightRequest="175" Source="{Binding Poster}" Aspect="AspectFill" />
+                                    <VerticalStackLayout Grid.Column="1">
+                                        <Label  Text="{Binding Title}" FontAttributes="Bold" />
+                                        <Label Text="{Binding Year}" FontAttributes="Italic" />
+                                    </VerticalStackLayout>
+                                </Grid>
+                            </Frame>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
 
         <Button Grid.Row="1" Grid.Column="0" Text="GetMovies" Command="{Binding GetMoviesCommand}" IsEnabled="{Binding IsNotBusy}" WidthRequest="150" HeightRequest="50" CornerRadius="20" FontSize="Medium" Margin="10"/>
 
