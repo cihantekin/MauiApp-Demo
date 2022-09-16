@@ -36,6 +36,9 @@
                             </Grid>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
+                    <CollectionView.Footer>
+                        <ActivityIndicator Grid.RowSpan="2" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" IsRunning="{Binding IsLoading}" IsVisible="{Binding IsLoading}" />
+                    </CollectionView.Footer>
                 </CollectionView>
             </RefreshView>
         </StackLayout>
