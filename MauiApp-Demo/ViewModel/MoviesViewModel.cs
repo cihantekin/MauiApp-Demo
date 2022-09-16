@@ -2,14 +2,14 @@
 using CommunityToolkit.Mvvm.Input;
 using MauiApp_Demo.Models;
 using MauiApp_Demo.Services;
-using System.Collections.ObjectModel;
+using MvvmHelpers;
 using System.Diagnostics;
 
 namespace MauiApp_Demo.ViewModel
 {
     public partial class MoviesViewModel : BaseViewModel
     {
-        public ObservableCollection<Movie> Movies { get; } = new();
+        public ObservableRangeCollection<Movie> Movies { get; } = new();
         private readonly MovieService _movieService;
 
         [ObservableProperty]
@@ -32,15 +32,7 @@ namespace MauiApp_Demo.ViewModel
             try
             {
                 IsBusy = true;
-                var movies = await _movieService.GetMoviesAsync();
-
-                if (Movies.Any())
-                {
-                    Movies.Clear();
-                }
-
-                foreach (var movie in movies)
-                    Movies.Add(movie);
+                Movies.ReplaceRange(await _movieService.GetMoviesAsync());
             }
             catch (Exception ex)
             {
@@ -62,15 +54,7 @@ namespace MauiApp_Demo.ViewModel
             try
             {
                 IsBusy = true;
-                var movies = await _movieService.GetMoviesAsync(text);
-
-                if (Movies.Any())
-                {
-                    Movies.Clear();
-                }
-
-                foreach (var movie in movies)
-                    Movies.Add(movie);
+                Movies.ReplaceRange(await _movieService.GetMoviesAsync(text));
             }
             catch (Exception ex)
             {
@@ -94,11 +78,7 @@ namespace MauiApp_Demo.ViewModel
                 if (Movies?.Count > 0)
                 {
                     IsLoading = true;
-                    var recordsToBeAdded = await _movieService.GetMoviesAsync("", Movies.Count);
-                    foreach (var record in recordsToBeAdded)
-                    {
-                        Movies.Add(record);
-                    }
+                    Movies.AddRange(await _movieService.GetMoviesAsync("", Movies.Count));
                     IsLoading = false;
                 }
             }

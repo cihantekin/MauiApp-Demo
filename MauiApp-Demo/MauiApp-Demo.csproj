@@ -50,7 +50,8 @@
 
 	<ItemGroup>
 	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
-	  <PackageReference Include="System.Text.Json" Version="6.0.5" />
+	  <PackageReference Include="Refractored.MvvmHelpers" Version="1.6.2" />
+	  <PackageReference Include="System.Text.Json" Version="7.0.0-rc.1.22426.10" />
 	</ItemGroup>
 
 </Project>
