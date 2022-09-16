@@ -10,11 +10,13 @@ namespace MauiApp_Demo.ViewModel
     public partial class MoviesViewModel : BaseViewModel
     {
         public ObservableCollection<Movie> Movies { get; } = new();
-
         private readonly MovieService _movieService;
 
         [ObservableProperty]
         bool isRefreshing;
+
+        [ObservableProperty]
+        bool isLoading;
 
         public MoviesViewModel(MovieService movieService)
         {
@@ -25,10 +27,7 @@ namespace MauiApp_Demo.ViewModel
         [RelayCommand]
         async Task GetMoviesAsync()
         {
-            if (IsBusy)
-            {
-                return;
-            }
+            if (IsBusy) return;
 
             try
             {
@@ -58,10 +57,7 @@ namespace MauiApp_Demo.ViewModel
         [RelayCommand]
         async Task GetSearchedMoviesAsync(string text)
         {
-            if (IsBusy)
-            {
-                return;
-            }
+            if (IsBusy) return;
 
             try
             {
@@ -85,6 +81,31 @@ namespace MauiApp_Demo.ViewModel
             {
                 IsBusy = false;
                 IsRefreshing = false;
+            }
+        }
+
+        [RelayCommand]
+        async Task LoadMoreDataAsync()
+        {
+            if (IsLoading) return;
+
+            try
+            {
+                if (Movies?.Count > 0)
+                {
+                    IsLoading = true;
+                    var recordsToBeAdded = await _movieService.GetMoviesAsync("", Movies.Count);
+                    foreach (var record in recordsToBeAdded)
+                    {
+                        Movies.Add(record);
+                    }
+                    IsLoading = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Unable to load more movies: {ex.Message}");
+                await Shell.Current.DisplayAlert("Error!", ex.Message, "OK");
             }
         }
     }

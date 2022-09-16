@@ -15,7 +15,7 @@
         <StackLayout>
             <SearchBar x:Name="searchBar" Placeholder="Search for movies" SearchCommand="{Binding GetSearchedMoviesCommand}" SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}" Margin="5" />
             <RefreshView Command="{Binding GetMoviesCommand}" IsRefreshing="{Binding IsRefreshing}" >
-                <CollectionView ItemsSource="{Binding Movies}" BackgroundColor="Transparent" SelectionMode="None">
+                <CollectionView ItemsSource="{Binding Movies}" BackgroundColor="Transparent" SelectionMode="None" RemainingItemsThreshold="1" RemainingItemsThresholdReachedCommand="{Binding LoadMoreDataCommand}">
                     <CollectionView.EmptyView>
                         <StackLayout Padding="100">
                             <Image HorizontalOptions="CenterAndExpand" Source="nodata.png" VerticalOptions="CenterAndExpand" />
@@ -28,7 +28,7 @@
                                     <Grid ColumnDefinitions="Auto,*" ColumnSpacing="5">
                                         <Image Grid.Column="0" WidthRequest="175" HeightRequest="175" Source="{Binding Poster}" Aspect="AspectFill" />
                                         <VerticalStackLayout Grid.Column="1">
-                                            <Label  Text="{Binding Title}" FontAttributes="Bold" />
+                                            <Label Text="{Binding Title}" FontAttributes="Bold" />
                                             <Label Text="{Binding Year}" FontAttributes="Italic" />
                                         </VerticalStackLayout>
                                     </Grid>

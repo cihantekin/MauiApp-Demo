@@ -7,7 +7,7 @@ namespace MauiApp_Demo.Services
     public class MovieService
     {
         private List<Movie> movieList;
-        public async Task<List<Movie>> GetMoviesAsync(string filter = "")
+        public async Task<List<Movie>> GetMoviesAsync(string filter = "", int? skip = 0)
         {
             using var stream = await FileSystem.OpenAppPackageFileAsync("movies.json");
             using StreamReader reader = new(stream);
@@ -21,7 +21,7 @@ namespace MauiApp_Demo.Services
             }
 
             movieList = movies.ToList();
-            movieList = movies.Take(25).ToList();
+            movieList = movies.Skip((int)skip).Take(25).ToList();
 
             return movieList;
         }
