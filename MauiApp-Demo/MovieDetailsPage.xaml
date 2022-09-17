@@ -10,7 +10,7 @@
         <VerticalStackLayout>
 
             <Image Source="{Binding Movie.Poster}" MaximumHeightRequest="500" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Aspect="AspectFill" />
-            <Label Margin="5, 5, 5, 0" HorizontalOptions="Center" FontSize="18" FontAttributes="Bold">
+            <Label Margin="5, 10, 5, 5" HorizontalOptions="Center" FontSize="18" FontAttributes="Bold">
                 <Label.Text>
                     <MultiBinding StringFormat="{}{0} ({1})">
                         <Binding Path="Movie.Title" />
@@ -34,6 +34,16 @@
             <BoxView Color="Black" HeightRequest="1" Opacity="0.5" Margin="10,5,10,10" HorizontalOptions="Fill" />
 
             <Label Text="{Binding Movie.Plot}" HorizontalOptions="Center" FontSize="Caption" Margin="10,0,20,15" />
+
+            <BoxView Color="Black" HeightRequest="1" Opacity="0.5" Margin="10,0,10,10" HorizontalOptions="Fill" />
+
+            <Grid ColumnDefinitions="75, *" RowDefinitions="Auto,Auto" Margin="10,0,10,5" RowSpacing="3" >
+                <Label Grid.Column="0" Grid.Row="0" Text="Director" FontSize="Caption" FontAttributes="Bold" />
+                <Label Grid.Column="1" Grid.Row="0" Text="{Binding Movie.Director}" FontSize="Caption" />
+
+                <Label Grid.Column="0" Grid.Row="1" Text="Stars" FontSize="Caption" FontAttributes="Bold" />
+                <Label Grid.Column="1" Grid.Row="1" Text="{Binding Movie.Actors}" FontSize="Caption" />
+            </Grid>
 
         </VerticalStackLayout>
     </ScrollView>
