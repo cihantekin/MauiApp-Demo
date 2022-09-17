@@ -54,4 +54,16 @@
 	  <PackageReference Include="System.Text.Json" Version="7.0.0-rc.1.22426.10" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Compile Update="MovieDetailsPage.xaml.cs">
+	    <DependentUpon>MovieDetailsPage.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="MovieDetailsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
 </Project>

@@ -88,5 +88,17 @@ namespace MauiApp_Demo.ViewModel
                 await Shell.Current.DisplayAlert("Error!", ex.Message, "OK");
             }
         }
+
+        [RelayCommand]
+        async Task GoToDetails(Movie movie)
+        {
+            if (movie == null)
+                return;
+
+            await Shell.Current.GoToAsync(nameof(MovieDetailsPage), true, new Dictionary<string, object>
+            {
+                {"Movie", movie}
+            });
+        }
     }
 }

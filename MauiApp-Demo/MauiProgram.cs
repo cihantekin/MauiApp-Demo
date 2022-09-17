@@ -20,6 +20,10 @@ public static class MauiProgram
 		builder.Services.AddSingleton<MainPage>();
 		builder.Services.AddSingleton<MoviesViewModel>();
 
-		return builder.Build();
+        builder.Services.AddTransient<MovieDetailsPage>();
+        builder.Services.AddTransient<MovieDetailsViewModel>();
+
+
+        return builder.Build();
 	}
 }
