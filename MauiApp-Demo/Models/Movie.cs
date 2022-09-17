@@ -1,9 +1,8 @@
-﻿using System.Text.Json;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 
 namespace MauiApp_Demo.Models
 {
-    
+
     public class Movie
     {
         [JsonPropertyName("id")]
