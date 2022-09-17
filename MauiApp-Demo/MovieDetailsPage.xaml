@@ -2,10 +2,40 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiApp_Demo.MovieDetailsPage"
-             xmlns:model="clr-namespace:MauiApp_Demo.Models"
              xmlns:viewmodel="clr-namespace:MauiApp_Demo.ViewModel"
              x:DataType="viewmodel:MovieDetailsViewModel"
-             Title="Movie Details">
-    <Label>Movie detail page</Label>
+             Title="{Binding Movie.Title}">
+
+    <ScrollView BackgroundColor="AliceBlue">
+        <VerticalStackLayout>
+
+            <Image Source="{Binding Movie.Poster}" MaximumHeightRequest="500" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Aspect="AspectFill" />
+            <Label Margin="5, 5, 5, 0" HorizontalOptions="Center" FontSize="18" FontAttributes="Bold">
+                <Label.Text>
+                    <MultiBinding StringFormat="{}{0} ({1})">
+                        <Binding Path="Movie.Title" />
+                        <Binding Path="Movie.Year" />
+                    </MultiBinding>
+                </Label.Text>
+            </Label>
+
+            <StackLayout Margin="5">
+                <CollectionView ItemsSource="{Binding Movie.Genres}" SelectionMode="None" ItemsLayout="HorizontalList" HorizontalOptions="Center">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="x:String">
+                            <Border WidthRequest="80" HeightRequest="20" Stroke="Gray" StrokeShape="RoundRectangle 10" StrokeThickness="1">
+                                <Label FontSize="10" FontAttributes="Bold" Text="{Binding .}" HorizontalOptions="Center" VerticalOptions="Center" Margin="2" />
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+
+            <BoxView Color="Black" HeightRequest="1" Opacity="0.5" Margin="10,5,10,10" HorizontalOptions="Fill" />
+
+            <Label Text="{Binding Movie.Plot}" HorizontalOptions="Center" FontSize="Caption" Margin="10,0,20,15" />
+
+        </VerticalStackLayout>
+    </ScrollView>
 
 </ContentPage>
