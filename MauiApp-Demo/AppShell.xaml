@@ -13,5 +13,8 @@
         <Tab Title="Favorites">
             <ShellContent ContentTemplate="{DataTemplate local:FavoritesPage}" Route="FavoritesPage" />
         </Tab>
+        <Tab Title="Watch List">
+            <ShellContent ContentTemplate="{DataTemplate local:WatchListPage}" Route="WatchListPage" />
+        </Tab>
     </TabBar>
 </Shell>

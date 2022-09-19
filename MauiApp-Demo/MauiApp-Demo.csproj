@@ -55,6 +55,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="WatchListPage.xaml.cs">
+	    <DependentUpon>WatchListPage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="FavoritesPage.xaml.cs">
 	    <DependentUpon>FavoritesPage.xaml</DependentUpon>
 	  </Compile>
@@ -64,6 +67,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="WatchListPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="FavoritesPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

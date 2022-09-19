@@ -8,5 +8,6 @@ public partial class AppShell : Shell
 
 		Routing.RegisterRoute(nameof(MovieDetailsPage), typeof(MovieDetailsPage));
 		Routing.RegisterRoute(nameof(FavoritesPage), typeof(FavoritesPage));
+		Routing.RegisterRoute(nameof(WatchListPage), typeof(WatchListPage));
 	}
 }
