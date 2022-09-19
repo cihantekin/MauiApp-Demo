@@ -46,8 +46,8 @@
             </RefreshView>
         </StackLayout>
 
-        <Button Grid.Row="1" Grid.Column="0" Text="GetMovies" Command="{Binding GetMoviesCommand}" IsEnabled="{Binding IsNotBusy}" WidthRequest="150" HeightRequest="40" CornerRadius="20" FontSize="Small" Margin="10"/>
-        <Button Grid.Row="1" Grid.Column="1" Text="Favorites"  IsEnabled="{Binding IsNotBusy}" WidthRequest="150" HeightRequest="40" CornerRadius="20" FontSize="Small" Margin="10"/>
+        <!--<Button Grid.Row="1" Grid.Column="0" Text="GetMovies" Command="{Binding GetMoviesCommand}" IsEnabled="{Binding IsNotBusy}" WidthRequest="150" HeightRequest="40" CornerRadius="20" FontSize="Small" Margin="10"/>
+        <Button Grid.Row="1" Grid.Column="1" Text="Favorites"  IsEnabled="{Binding IsNotBusy}" WidthRequest="150" HeightRequest="40" CornerRadius="20" FontSize="Small" Margin="10"/>-->
 
         <ActivityIndicator Grid.RowSpan="2" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" />
 

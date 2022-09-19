@@ -22,6 +22,7 @@ namespace MauiApp_Demo.ViewModel
         {
             Title = "Movies";
             this._movieService = movieService;
+            _ = GetMoviesAsync();
         }
 
         [RelayCommand]

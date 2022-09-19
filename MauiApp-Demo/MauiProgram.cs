@@ -1,5 +1,6 @@
 ﻿using MauiApp_Demo.Services;
 using MauiApp_Demo.ViewModel;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace MauiApp_Demo;
 
@@ -22,6 +23,8 @@ public static class MauiProgram
 
         builder.Services.AddTransient<MovieDetailsPage>();
         builder.Services.AddTransient<MovieDetailsViewModel>();
+
+		builder.Services.AddTransient<FavoritesPage>();
 
 
         return builder.Build();

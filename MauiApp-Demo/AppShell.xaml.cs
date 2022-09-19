@@ -7,5 +7,6 @@ public partial class AppShell : Shell
 		InitializeComponent();
 
 		Routing.RegisterRoute(nameof(MovieDetailsPage), typeof(MovieDetailsPage));
+		Routing.RegisterRoute(nameof(FavoritesPage), typeof(FavoritesPage));
 	}
 }

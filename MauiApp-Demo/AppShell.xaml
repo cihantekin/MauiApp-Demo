@@ -6,9 +6,12 @@
     xmlns:local="clr-namespace:MauiApp_Demo"
     Shell.FlyoutBehavior="Disabled">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
-
+    <TabBar x:Name="MovieTabBar">
+        <Tab Title="Movies" Icon="home_icon.png">
+            <ShellContent ContentTemplate="{DataTemplate local:MainPage}" Route="MainPage"  />
+        </Tab>
+        <Tab Title="Favorites">
+            <ShellContent ContentTemplate="{DataTemplate local:FavoritesPage}" Route="FavoritesPage" />
+        </Tab>
+    </TabBar>
 </Shell>
