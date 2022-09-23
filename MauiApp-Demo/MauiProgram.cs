@@ -17,8 +17,10 @@ public static class MauiProgram
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 			});
 
-		builder.Services.AddSingleton<MovieService>();
-		builder.Services.AddSingleton<MainPage>();
+		var dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"Movie.db");
+
+        builder.Services.AddSingleton<MovieService>();
+        builder.Services.AddSingleton<MainPage>();
 		builder.Services.AddSingleton<MoviesViewModel>();
 
         builder.Services.AddTransient<MovieDetailsPage>();
@@ -27,6 +29,8 @@ public static class MauiProgram
 		builder.Services.AddTransient<FavoritesPage>();
 
 		builder.Services.TryAddTransient<WatchListPage>();
+        builder.Services.AddSingleton(s => ActivatorUtilities.CreateInstance<WatchListService>(s, dbPath));
+
 
         return builder.Build();
 	}
