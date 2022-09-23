@@ -1,5 +1,6 @@
 ﻿using MauiApp_Demo.Services;
 using MauiApp_Demo.ViewModel;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace MauiApp_Demo;
@@ -29,6 +30,7 @@ public static class MauiProgram
 		builder.Services.AddTransient<FavoritesPage>();
 
 		builder.Services.TryAddTransient<WatchListPage>();
+		builder.Services.AddTransient<WatchListViewModel>();
         builder.Services.AddSingleton(s => ActivatorUtilities.CreateInstance<WatchListService>(s, dbPath));
 
 

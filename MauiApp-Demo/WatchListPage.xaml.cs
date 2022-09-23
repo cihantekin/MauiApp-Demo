@@ -4,8 +4,9 @@ namespace MauiApp_Demo;
 
 public partial class WatchListPage : ContentPage
 {
-    public WatchListPage()
+    public WatchListPage(WatchListViewModel viewModel)
     {
         InitializeComponent();
+        BindingContext = viewModel;
     }
 }

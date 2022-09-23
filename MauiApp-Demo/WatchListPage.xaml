@@ -1,7 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MauiApp_Demo.WatchListPage">
+             x:Class="MauiApp_Demo.WatchListPage"
+             xmlns:viewmodel="clr-namespace:MauiApp_Demo.ViewModel"
+             x:DataType="viewmodel:WatchListViewModel"
+             Title="Watch List">
 
     <Label Text="WatchList page" />
 
