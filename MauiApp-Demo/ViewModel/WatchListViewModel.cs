@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using MauiApp_Demo.Models;
 using MauiApp_Demo.Services;
 using MvvmHelpers;
@@ -18,7 +19,7 @@ namespace MauiApp_Demo.ViewModel
         }
 
         [RelayCommand]
-        private async Task GetWatchListAsync()
+        async Task GetWatchListAsync()
         {
             if (IsBusy) return;
             try

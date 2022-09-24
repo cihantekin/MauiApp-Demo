@@ -2,10 +2,39 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiApp_Demo.WatchListPage"
+             xmlns:model="clr-namespace:MauiApp_Demo.Models"
              xmlns:viewmodel="clr-namespace:MauiApp_Demo.ViewModel"
              x:DataType="viewmodel:WatchListViewModel"
              Title="Watch List">
 
-    <Label Text="WatchList page" />
+    <Grid ColumnDefinitions="*,*,*" RowDefinitions="250">
+        <StackLayout>
+            <RefreshView Command="{Binding GetWatchListCommand}" IsRefreshing="{Binding IsBusy}" >
+                <CollectionView ItemsSource="{Binding WatchList}" BackgroundColor="Transparent" SelectionMode="None">
+                    <CollectionView.EmptyView>
+                        <StackLayout Padding="100">
+                            <Image HorizontalOptions="CenterAndExpand" Source="nodata.png" VerticalOptions="CenterAndExpand" />
+                        </StackLayout>
+                    </CollectionView.EmptyView>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="model:WatchList">
+                            <Grid Margin="2">
+                                <Frame HeightRequest="125" HasShadow="True" CornerRadius="10" IsClippedToBounds="True" BorderColor="#DDDDDD">
+                                    <Grid ColumnDefinitions="Auto,*" ColumnSpacing="5">
+                                        <Image WidthRequest="100" HeightRequest="100" Source="{Binding Poster}" Aspect="AspectFill" />
+                                    </Grid>
+                                </Frame>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                    <CollectionView.Footer>
+                        <ActivityIndicator Grid.RowSpan="2" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" />
+                    </CollectionView.Footer>
+                </CollectionView>
+            </RefreshView>
+        </StackLayout>
+
+        <ActivityIndicator Grid.RowSpan="2" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" />
+    </Grid>
 
 </ContentPage>
