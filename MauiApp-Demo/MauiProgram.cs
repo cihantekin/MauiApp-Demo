@@ -19,9 +19,10 @@ public static class MauiProgram
 			});
 
 		var dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"Movie.db");
+        builder.Services.AddSingleton(s => ActivatorUtilities.CreateInstance<MovieService>(s, dbPath));
+		builder.Services.AddSingleton(s => ActivatorUtilities.CreateInstance<WatchListService>(s, dbPath));
 
-        builder.Services.AddSingleton<MovieService>();
-        builder.Services.AddSingleton<MainPage>();
+		builder.Services.AddSingleton<MainPage>();
 		builder.Services.AddSingleton<MoviesViewModel>();
 
         builder.Services.AddTransient<MovieDetailsPage>();
@@ -31,7 +32,6 @@ public static class MauiProgram
 
 		builder.Services.TryAddTransient<WatchListPage>();
 		builder.Services.AddTransient<WatchListViewModel>();
-        builder.Services.AddSingleton(s => ActivatorUtilities.CreateInstance<WatchListService>(s, dbPath));
 
 
         return builder.Build();

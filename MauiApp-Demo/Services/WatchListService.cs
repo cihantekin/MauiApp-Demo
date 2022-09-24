@@ -22,12 +22,19 @@ namespace MauiApp_Demo.Services
             await con.CreateTableAsync<WatchList>();
         }
 
-        public async Task AddWatchList(int movieId)
+        public async Task AddWatchList(Movie movie)
         {
             await InitAsync();
+            if (await con.Table<WatchList>().FirstOrDefaultAsync(x => x.MovieId == movie.Id && !x.IsDeleted) is not null)
+            {
+                return;
+            }
+
             var watchListAdd = new WatchList
             {
-                MovieId = movieId,
+                MovieId = movie.Id,
+                MovieName = movie.Title,
+                Poster = movie.Poster,
                 IsDeleted = false,
             };
 

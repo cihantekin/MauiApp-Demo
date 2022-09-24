@@ -6,6 +6,7 @@ using MauiApp_Demo.Services;
 namespace MauiApp_Demo.ViewModel
 {
     [QueryProperty(nameof(Movie), "Movie")]
+    [QueryProperty(nameof(Genres), "Genres")]
     public partial class MovieDetailsViewModel : BaseViewModel
     {
         private readonly WatchListService _watchListService;
@@ -18,10 +19,13 @@ namespace MauiApp_Demo.ViewModel
         [ObservableProperty]
         Movie movie;
 
+        [ObservableProperty]
+        List<string> genres;
+
         [RelayCommand]
-        private async Task AddWatchListAsync(int movieId)
+        private async Task AddWatchListAsync(Movie movie)
         {
-            await _watchListService.AddWatchList(movieId);
+            await _watchListService.AddWatchList(movie);
         }
     }
 }

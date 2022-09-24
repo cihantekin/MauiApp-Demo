@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using MauiApp_Demo.Models;
 using MauiApp_Demo.Services;
 using MvvmHelpers;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 
 namespace MauiApp_Demo.ViewModel
@@ -96,9 +97,12 @@ namespace MauiApp_Demo.ViewModel
             if (movie == null)
                 return;
 
+            var genres = movie.Genres.Split(",").ToList();
+
             await Shell.Current.GoToAsync(nameof(MovieDetailsPage), true, new Dictionary<string, object>
             {
-                {"Movie", movie}
+                {"Movie", movie},
+                {"Genres", genres}
             });
         }
     }

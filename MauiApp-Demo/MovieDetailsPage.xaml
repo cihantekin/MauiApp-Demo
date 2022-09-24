@@ -11,7 +11,7 @@
             <StackLayout>
                 <Grid ColumnDefinitions="*,*,Auto" RowDefinitions="*">
                     <Image Grid.ColumnSpan="3" Source="{Binding Movie.Poster}" MaximumHeightRequest="500" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Aspect="AspectFill" />
-                    <Button Grid.Column="2" Command="{Binding AddWatchListCommand}" CommandParameter="{Binding Movie.Id}" Text="+" TextColor="Yellow" HeightRequest="35" WidthRequest="35" CornerRadius="5" FontSize="25" FontAttributes="Bold" Margin="18" VerticalOptions="Start" Padding="0" BackgroundColor="Transparent" BorderColor="Yellow" BorderWidth="1" />
+                    <Button Grid.Column="2" Command="{Binding AddWatchListCommand}" CommandParameter="{Binding Movie}" Text="+" TextColor="Yellow" HeightRequest="35" WidthRequest="35" CornerRadius="5" FontSize="25" FontAttributes="Bold" Margin="18" VerticalOptions="Start" Padding="0" BackgroundColor="Transparent" BorderColor="Yellow" BorderWidth="1" />
                 </Grid>
             </StackLayout>
             <Label Margin="5, 10, 5, 5" HorizontalOptions="Center" FontSize="18" FontAttributes="Bold">
@@ -24,7 +24,7 @@
             </Label>
 
             <StackLayout Margin="5">
-                <CollectionView ItemsSource="{Binding Movie.Genres}" SelectionMode="None" ItemsLayout="HorizontalList" HorizontalOptions="Center">
+                <CollectionView ItemsSource="{Binding Genres}" SelectionMode="None" ItemsLayout="HorizontalList" HorizontalOptions="Center">
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="x:String">
                             <Border WidthRequest="80" HeightRequest="20" Stroke="Gray" StrokeShape="RoundRectangle 10" StrokeThickness="1">
