@@ -7,7 +7,7 @@
              x:DataType="viewmodel:WatchListViewModel"
              Title="Watch List">
 
-    <Grid ColumnDefinitions="*" RowDefinitions="200">
+    <Grid ColumnDefinitions="*" RowDefinitions="*">
         <HorizontalStackLayout>
             <RefreshView Command="{Binding GetWatchListCommand}" IsRefreshing="{Binding IsBusy}" >
                 <CollectionView ItemsSource="{Binding WatchList}" BackgroundColor="Transparent" SelectionMode="None" ItemsLayout="VerticalGrid, 3">
@@ -18,11 +18,9 @@
                     </CollectionView.EmptyView>
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="model:WatchList">
-                            <Grid RowDefinitions="200" ColumnDefinitions="126">
                             <Frame WidthRequest="126" HeightRequest="200" Margin="2" BorderColor="#DDDDDD">
                                 <Image WidthRequest="90" HeightRequest="180" Source="{Binding Poster}" Aspect="AspectFill" />
                             </Frame>
-                            </Grid>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                     <CollectionView.Footer>
