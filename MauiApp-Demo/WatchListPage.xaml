@@ -19,7 +19,7 @@
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="model:WatchList">
                             <Frame WidthRequest="126" HeightRequest="200" Margin="2" BorderColor="#DDDDDD">
-                                <Image WidthRequest="90" HeightRequest="180" Source="{Binding Poster}" Aspect="AspectFill" />
+                                <Image WidthRequest="115" HeightRequest="185" Source="{Binding Poster}" Aspect="AspectFill" />
                             </Frame>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
