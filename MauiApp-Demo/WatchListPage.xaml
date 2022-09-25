@@ -7,10 +7,10 @@
              x:DataType="viewmodel:WatchListViewModel"
              Title="Watch List">
 
-    <Grid ColumnDefinitions="*,*,*" RowDefinitions="250">
-        <StackLayout>
+    <Grid ColumnDefinitions="*" RowDefinitions="200">
+        <HorizontalStackLayout>
             <RefreshView Command="{Binding GetWatchListCommand}" IsRefreshing="{Binding IsBusy}" >
-                <CollectionView ItemsSource="{Binding WatchList}" BackgroundColor="Transparent" SelectionMode="None">
+                <CollectionView ItemsSource="{Binding WatchList}" BackgroundColor="Transparent" SelectionMode="None" ItemsLayout="VerticalGrid, 3">
                     <CollectionView.EmptyView>
                         <StackLayout Padding="100">
                             <Image HorizontalOptions="CenterAndExpand" Source="nodata.png" VerticalOptions="CenterAndExpand" />
@@ -18,12 +18,10 @@
                     </CollectionView.EmptyView>
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="model:WatchList">
-                            <Grid Margin="2">
-                                <Frame HeightRequest="125" HasShadow="True" CornerRadius="10" IsClippedToBounds="True" BorderColor="#DDDDDD">
-                                    <Grid ColumnDefinitions="Auto,*" ColumnSpacing="5">
-                                        <Image WidthRequest="100" HeightRequest="100" Source="{Binding Poster}" Aspect="AspectFill" />
-                                    </Grid>
-                                </Frame>
+                            <Grid RowDefinitions="200" ColumnDefinitions="126">
+                            <Frame WidthRequest="126" HeightRequest="200" Margin="2" BorderColor="#DDDDDD">
+                                <Image WidthRequest="90" HeightRequest="180" Source="{Binding Poster}" Aspect="AspectFill" />
+                            </Frame>
                             </Grid>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
@@ -32,7 +30,7 @@
                     </CollectionView.Footer>
                 </CollectionView>
             </RefreshView>
-        </StackLayout>
+        </HorizontalStackLayout>
 
         <ActivityIndicator Grid.RowSpan="2" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" />
     </Grid>
