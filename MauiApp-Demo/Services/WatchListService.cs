@@ -22,12 +22,12 @@ namespace MauiApp_Demo.Services
             await con.CreateTableAsync<WatchList>();
         }
 
-        public async Task AddWatchList(Movie movie)
+        public async Task<int> AddWatchList(Movie movie)
         {
             await InitAsync();
             if (await con.Table<WatchList>().FirstOrDefaultAsync(x => x.MovieId == movie.Id && !x.IsDeleted) is not null)
             {
-                return;
+                return 0;
             }
 
             var watchListAdd = new WatchList
@@ -38,7 +38,7 @@ namespace MauiApp_Demo.Services
                 IsDeleted = false,
             };
 
-            await con.InsertAsync(watchListAdd);
+            return await con.InsertAsync(watchListAdd);
         }
 
         public async Task<List<WatchList>> GetWatchList()
@@ -51,6 +51,12 @@ namespace MauiApp_Demo.Services
         {
             await InitAsync();
             return await con.Table<WatchList>().FirstOrDefaultAsync(x => x.MovieId == movieId) != null; 
+        }
+
+        public async Task<int> RemoveFromWatchList(Movie movie)
+        {
+            await InitAsync();
+            return await con.Table<WatchList>().DeleteAsync(x => x.MovieId == movie.Id);
         }
     }
 }

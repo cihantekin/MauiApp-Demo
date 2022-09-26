@@ -3,33 +3,46 @@ using CommunityToolkit.Mvvm.Input;
 using MauiApp_Demo.Models;
 using MauiApp_Demo.Services;
 
-namespace MauiApp_Demo.ViewModel
-{
-    [QueryProperty(nameof(Movie), "Movie")]
-    [QueryProperty(nameof(Genres), "Genres")]
-    [QueryProperty(nameof(IsInWatchList), "IsInWatchList")]
-    public partial class MovieDetailsViewModel : BaseViewModel
-    {
-        private readonly WatchListService _watchListService;
+namespace MauiApp_Demo.ViewModel;
 
-        public MovieDetailsViewModel(WatchListService watchListService)
+[QueryProperty(nameof(Movie), "Movie")]
+[QueryProperty(nameof(Genres), "Genres")]
+[QueryProperty(nameof(IsInWatchList), "IsInWatchList")]
+public partial class MovieDetailsViewModel : BaseViewModel
+{
+    private readonly WatchListService _watchListService;
+
+    public MovieDetailsViewModel(WatchListService watchListService)
+    {
+        _watchListService = watchListService;
+    }
+
+    [ObservableProperty]
+    Movie movie;
+
+    [ObservableProperty]
+    List<string> genres;
+
+    [ObservableProperty]
+    bool isInWatchList;
+
+    [RelayCommand]
+    private async Task HandleWatchListOperationsAsync(Movie movie)
+    {
+        int result;
+
+        if (IsInWatchList)
         {
-            _watchListService = watchListService;
+            result = await _watchListService.RemoveFromWatchList(movie);
+        }
+        else
+        {
+            result = await _watchListService.AddWatchList(movie);
         }
 
-        [ObservableProperty]
-        Movie movie;
-
-        [ObservableProperty]
-        List<string> genres;
-
-        [ObservableProperty]
-        bool isInWatchList;
-
-        [RelayCommand]
-        private async Task AddWatchListAsync(Movie movie)
+        if (result > 0)
         {
-            await _watchListService.AddWatchList(movie);
+            IsInWatchList = !IsInWatchList;
         }
     }
 }
