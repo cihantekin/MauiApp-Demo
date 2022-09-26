@@ -12,6 +12,9 @@ namespace MauiApp_Demo.ViewModel
         private readonly WatchListService _watchListService;
         public ObservableRangeCollection<WatchList> WatchList { get; } = new ();
 
+        [ObservableProperty]
+        bool isRefreshing;
+
         public WatchListViewModel(WatchListService watchListService)
         {
             _watchListService = watchListService;
@@ -25,7 +28,7 @@ namespace MauiApp_Demo.ViewModel
             try
             {
                 IsBusy = true;
-                WatchList.AddRange(await _watchListService.GetWatchList());
+                WatchList.ReplaceRange(await _watchListService.GetWatchList());
             }
             catch (Exception ex)
             {
@@ -35,6 +38,7 @@ namespace MauiApp_Demo.ViewModel
             finally
             {
                 IsBusy = false;
+                IsRefreshing = false;
             }
         }
     }

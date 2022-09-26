@@ -9,7 +9,7 @@
 
     <Grid ColumnDefinitions="*" RowDefinitions="*">
         <HorizontalStackLayout>
-            <RefreshView Command="{Binding GetWatchListCommand}" IsRefreshing="{Binding IsBusy}" >
+            <RefreshView Command="{Binding GetWatchListCommand}" IsRefreshing="{Binding IsRefreshing}" >
                 <CollectionView ItemsSource="{Binding WatchList}" BackgroundColor="Transparent" SelectionMode="None" ItemsLayout="VerticalGrid, 3">
                     <CollectionView.EmptyView>
                         <StackLayout Padding="100">
