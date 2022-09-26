@@ -7,6 +7,7 @@ namespace MauiApp_Demo.ViewModel
 {
     [QueryProperty(nameof(Movie), "Movie")]
     [QueryProperty(nameof(Genres), "Genres")]
+    [QueryProperty(nameof(IsInWatchList), "IsInWatchList")]
     public partial class MovieDetailsViewModel : BaseViewModel
     {
         private readonly WatchListService _watchListService;
@@ -21,6 +22,9 @@ namespace MauiApp_Demo.ViewModel
 
         [ObservableProperty]
         List<string> genres;
+
+        [ObservableProperty]
+        bool isInWatchList;
 
         [RelayCommand]
         private async Task AddWatchListAsync(Movie movie)

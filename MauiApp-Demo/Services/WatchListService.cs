@@ -46,5 +46,11 @@ namespace MauiApp_Demo.Services
             await InitAsync();
             return await con.Table<WatchList>().ToListAsync();
         }
+
+        public async Task<bool> IsMovieInWathcList(int movieId)
+        {
+            await InitAsync();
+            return await con.Table<WatchList>().FirstOrDefaultAsync(x => x.MovieId == movieId) != null; 
+        }
     }
 }

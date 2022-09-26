@@ -12,6 +12,7 @@ namespace MauiApp_Demo.ViewModel
     {
         public ObservableRangeCollection<Movie> Movies { get; } = new();
         private readonly MovieService _movieService;
+        private readonly WatchListService _watchListService;
 
         [ObservableProperty]
         bool isRefreshing;
@@ -19,10 +20,11 @@ namespace MauiApp_Demo.ViewModel
         [ObservableProperty]
         bool isLoading;
 
-        public MoviesViewModel(MovieService movieService)
+        public MoviesViewModel(MovieService movieService, WatchListService watchListService)
         {
             Title = "Movies";
             this._movieService = movieService;
+            _watchListService = watchListService;
             _ = GetMoviesAsync();
         }
 
@@ -98,11 +100,13 @@ namespace MauiApp_Demo.ViewModel
                 return;
 
             var genres = movie.Genres.Split(",").ToList();
+            var isInWatchList = await _watchListService.IsMovieInWathcList(movie.Id);
 
             await Shell.Current.GoToAsync(nameof(MovieDetailsPage), true, new Dictionary<string, object>
             {
                 {"Movie", movie},
-                {"Genres", genres}
+                {"Genres", genres},
+                {"IsInWatchList", isInWatchList}
             });
         }
     }
