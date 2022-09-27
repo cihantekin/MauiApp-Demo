@@ -7,13 +7,13 @@
     Shell.FlyoutBehavior="Disabled">
 
     <TabBar x:Name="MovieTabBar">
-        <Tab Title="Movies" Icon="home_icon.png">
-            <ShellContent ContentTemplate="{DataTemplate local:MainPage}" Route="MainPage"  />
+        <Tab Title="Movies" Icon="movies.svg">
+            <ShellContent ContentTemplate="{DataTemplate local:MainPage}" Route="MainPage" />
         </Tab>
-        <Tab Title="Favorites">
+        <Tab Title="Favorites" Icon="favorites.svg">
             <ShellContent ContentTemplate="{DataTemplate local:FavoritesPage}" Route="FavoritesPage" />
         </Tab>
-        <Tab Title="Watch List">
+        <Tab Title="Watch List" Icon="watchlist.svg">
             <ShellContent ContentTemplate="{DataTemplate local:WatchListPage}" Route="WatchListPage" />
         </Tab>
     </TabBar>

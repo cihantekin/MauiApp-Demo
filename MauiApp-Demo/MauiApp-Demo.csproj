@@ -49,6 +49,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Images\favorites.svg" />
+	  <None Remove="Resources\Images\movies.svg" />
+	  <None Remove="Resources\Images\watchlist.svg" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
 	  <PackageReference Include="Refractored.MvvmHelpers" Version="1.6.2" />
 	  <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
