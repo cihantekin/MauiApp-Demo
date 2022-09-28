@@ -11,7 +11,19 @@
             <StackLayout>
                 <Grid ColumnDefinitions="*,*,Auto" RowDefinitions="*">
                     <Image Grid.ColumnSpan="3" Source="{Binding Movie.Poster}" MaximumHeightRequest="500" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Aspect="AspectFill" />
-                    <Button x:Name="WatchListOperationsButton" Grid.Column="2" Command="{Binding HandleWatchListOperationsCommand}" CommandParameter="{Binding Movie}" Text="+" TextColor="Yellow" HeightRequest="35" WidthRequest="35" CornerRadius="5" FontSize="25" FontAttributes="Bold" Margin="18" VerticalOptions="Start" Padding="0" BackgroundColor="Transparent" BorderColor="Yellow" BorderWidth="1" />
+                    <HorizontalStackLayout Grid.Column="2">
+                        <ImageButton Clicked="OnButtonClicked" x:Name="FavoriteButton" Grid.Column="2" Source="favorites.svg" Margin="18" VerticalOptions="Start" HeightRequest="35" WidthRequest="35">
+                            <ImageButton.Shadow>
+                                <Shadow Brush="Black" Opacity="0.7" Offset="10,10" ></Shadow>
+                            </ImageButton.Shadow>
+                        </ImageButton>
+                        <Button x:Name="WatchListOperationsButton" Grid.Column="2" Command="{Binding HandleWatchListOperationsCommand}" CommandParameter="{Binding Movie}" Text="+" TextColor="Yellow" HeightRequest="35" WidthRequest="35" CornerRadius="5" FontSize="25" FontAttributes="Bold" Margin="18" VerticalOptions="Start" Padding="0" BackgroundColor="Transparent" BorderColor="Yellow" BorderWidth="1">
+                            <Button.Shadow>
+                                <Shadow Brush="Black" Opacity="0.7" Offset="10,10" ></Shadow>
+                            </Button.Shadow>
+                        </Button>
+
+                    </HorizontalStackLayout>
                 </Grid>
             </StackLayout>
             <Label Margin="5, 10, 5, 5" HorizontalOptions="Center" FontSize="18" FontAttributes="Bold">

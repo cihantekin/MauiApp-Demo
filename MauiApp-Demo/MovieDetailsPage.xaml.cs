@@ -42,4 +42,13 @@ public partial class MovieDetailsPage : ContentPage
         WatchListOperationsButton.TextColor = Colors.Yellow;
         WatchListOperationsButton.BackgroundColor = Colors.Transparent;
     }
+
+    async void OnButtonClicked(object sender, EventArgs args)
+    {
+        string result = await DisplayPromptAsync("Add Favorites", "Would you like to write some personel notes about movie:");
+        if (result != null)
+        {
+            string point = await DisplayActionSheet("Your points for movie:", "Cancel", null, "1", "2", "3", "4", "5", "6", "7", "8", "9", "10");
+        }
+    }
 }
