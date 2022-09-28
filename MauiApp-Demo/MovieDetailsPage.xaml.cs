@@ -43,7 +43,7 @@ public partial class MovieDetailsPage : ContentPage
         WatchListOperationsButton.BackgroundColor = Colors.Transparent;
     }
 
-    async void OnButtonClicked(object sender, EventArgs args)
+    async void OnFavoriteButtonClicked(object sender, EventArgs args)
     {
         string result = await DisplayPromptAsync("Add Favorites", "Would you like to write some personel notes about movie:");
         if (result != null)

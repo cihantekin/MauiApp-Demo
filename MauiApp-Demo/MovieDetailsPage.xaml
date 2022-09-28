@@ -12,7 +12,7 @@
                 <Grid ColumnDefinitions="*,*,Auto" RowDefinitions="*">
                     <Image Grid.ColumnSpan="3" Source="{Binding Movie.Poster}" MaximumHeightRequest="500" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Aspect="AspectFill" />
                     <HorizontalStackLayout Grid.Column="2">
-                        <ImageButton Clicked="OnButtonClicked" x:Name="FavoriteButton" Grid.Column="2" Source="favorites.svg" Margin="18" VerticalOptions="Start" HeightRequest="35" WidthRequest="35">
+                        <ImageButton Clicked="OnFavoriteButtonClicked" x:Name="FavoriteButton" Grid.Column="2" Source="favorites.svg" Margin="18" VerticalOptions="Start" HeightRequest="35" WidthRequest="35">
                             <ImageButton.Shadow>
                                 <Shadow Brush="Black" Opacity="0.7" Offset="10,10" ></Shadow>
                             </ImageButton.Shadow>
