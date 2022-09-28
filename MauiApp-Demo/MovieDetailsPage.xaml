@@ -6,7 +6,7 @@
              x:DataType="viewmodel:MovieDetailsViewModel"
              Title="{Binding Movie.Title}">
 
-    <ScrollView BackgroundColor="AliceBlue">
+    <ScrollView>
         <VerticalStackLayout>
             <StackLayout>
                 <Grid ColumnDefinitions="*,*,Auto" RowDefinitions="*">

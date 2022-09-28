@@ -10,8 +10,7 @@
     <Grid 
         ColumnDefinitions="*,*"
         ColumnSpacing="5"
-        RowDefinitions="*,Auto"
-        BackgroundColor="AliceBlue">
+        RowDefinitions="*,Auto">
         <StackLayout Grid.ColumnSpan="2">
             <SearchBar x:Name="searchBar" Placeholder="Search for movies" SearchCommand="{Binding GetSearchedMoviesCommand}" SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}" Margin="5" />
             <RefreshView Command="{Binding GetMoviesCommand}" IsRefreshing="{Binding IsRefreshing}" >
@@ -24,7 +23,7 @@
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="model:Movie">
                             <Grid Margin="2">
-                                <Frame HeightRequest="125" HasShadow="True" CornerRadius="10" IsClippedToBounds="True" BorderColor="#DDDDDD">
+                                <Frame HeightRequest="125" HasShadow="True" CornerRadius="10" IsClippedToBounds="True" BorderColor="#DDDDDD" BackgroundColor="AliceBlue">
                                     <Frame.GestureRecognizers>
                                         <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MoviesViewModel}}, Path=GoToDetailsCommand}" CommandParameter="{Binding .}" />
                                     </Frame.GestureRecognizers>
