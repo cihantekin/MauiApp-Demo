@@ -11,10 +11,11 @@ namespace MauiApp_Demo.ViewModel;
 public partial class MovieDetailsViewModel : BaseViewModel
 {
     private readonly WatchListService _watchListService;
-
-    public MovieDetailsViewModel(WatchListService watchListService)
+    private readonly FavoriteService _favoriteService;
+    public MovieDetailsViewModel(WatchListService watchListService, FavoriteService favoriteService)
     {
         _watchListService = watchListService;
+        _favoriteService = favoriteService;
     }
 
     [ObservableProperty]
@@ -44,5 +45,18 @@ public partial class MovieDetailsViewModel : BaseViewModel
         {
             IsInWatchList = !IsInWatchList;
         }
+    }
+
+    internal async Task HandleFavoriteOperations(string movieNotes, string movieScore)
+    {
+        Favorite favorite = new()
+        {
+            MovieId = Movie.Id,
+            MovieNotes = movieNotes,
+            Score = Convert.ToInt32(movieScore)
+        };
+
+        await _favoriteService.AddFavorites(favorite);
+
     }
 }

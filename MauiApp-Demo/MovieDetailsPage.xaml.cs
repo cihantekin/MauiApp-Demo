@@ -9,7 +9,6 @@ public partial class MovieDetailsPage : ContentPage
     {
         InitializeComponent();
         BindingContext = viewModel;
-
         viewModel.PropertyChanged += ViewModelPropertyChanged;
     }
 
@@ -45,10 +44,15 @@ public partial class MovieDetailsPage : ContentPage
 
     async void OnFavoriteButtonClicked(object sender, EventArgs args)
     {
-        string result = await DisplayPromptAsync("Add Favorites", "Would you like to write some personel notes about movie:");
-        if (result != null)
+        var model = (MovieDetailsViewModel)BindingContext;
+        string movieScore = string.Empty;
+        string movieNotes = await DisplayPromptAsync("Add Favorites", "Would you like to write some personel notes about movie:");
+
+        if (movieNotes != null)
         {
-            string point = await DisplayActionSheet("Your points for movie:", "Cancel", null, "1", "2", "3", "4", "5", "6", "7", "8", "9", "10");
+            movieScore = await DisplayActionSheet("Your points for movie:", "Cancel", null, "1", "2", "3", "4", "5", "6", "7", "8", "9", "10");
         }
+        
+        await model.HandleFavoriteOperations(movieNotes, movieScore);
     }
 }

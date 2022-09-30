@@ -21,6 +21,7 @@ public static class MauiProgram
 		var dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"Movie.db");
         builder.Services.AddSingleton(s => ActivatorUtilities.CreateInstance<MovieService>(s, dbPath));
 		builder.Services.AddSingleton(s => ActivatorUtilities.CreateInstance<WatchListService>(s, dbPath));
+		builder.Services.AddSingleton(s => ActivatorUtilities.CreateInstance<FavoriteService>(s, dbPath));
 
 		builder.Services.AddSingleton<MainPage>();
 		builder.Services.AddSingleton<MoviesViewModel>();
