@@ -1,10 +1,5 @@
 ﻿using MauiApp_Demo.Models;
 using SQLite;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MauiApp_Demo.Services
 {
@@ -37,5 +32,9 @@ namespace MauiApp_Demo.Services
             return await con.InsertAsync(favorite);
         }
 
+        public async Task<List<Favorite>> GetFavorites()
+        {
+            return await con.Table<Favorite>().ToListAsync();
+        }
     }
 }

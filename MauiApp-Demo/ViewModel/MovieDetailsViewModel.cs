@@ -52,6 +52,8 @@ public partial class MovieDetailsViewModel : BaseViewModel
         Favorite favorite = new()
         {
             MovieId = Movie.Id,
+            MovieName = Movie.Title,
+            Poster = Movie.Poster,
             MovieNotes = movieNotes,
             Score = Convert.ToInt32(movieScore)
         };
