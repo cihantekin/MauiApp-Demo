@@ -3,7 +3,6 @@ using CommunityToolkit.Mvvm.Input;
 using MauiApp_Demo.Models;
 using MauiApp_Demo.Services;
 using MvvmHelpers;
-using System.Collections.ObjectModel;
 using System.Diagnostics;
 
 namespace MauiApp_Demo.ViewModel

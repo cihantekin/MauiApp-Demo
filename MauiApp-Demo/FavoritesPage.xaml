@@ -2,9 +2,49 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiApp_Demo.FavoritesPage"
-             
+             xmlns:model="clr-namespace:MauiApp_Demo.Models"
+             xmlns:viewmodel="clr-namespace:MauiApp_Demo.ViewModel"
+             x:DataType="viewmodel:FavoritesViewModel"
              >
 
-    <Label Text="Favorites page" />
+    <Grid 
+        ColumnDefinitions="*,*"
+        ColumnSpacing="5"
+        RowDefinitions="*,Auto">
+        <StackLayout Grid.ColumnSpan="2">
+            <RefreshView Command="{Binding GetFavoriteListCommand}" IsRefreshing="{Binding IsRefreshing}" >
+                <CollectionView ItemsSource="{Binding FavoriteList}" BackgroundColor="Transparent" SelectionMode="None" RemainingItemsThreshold="1">
+                    <CollectionView.EmptyView>
+                        <StackLayout Padding="100">
+                            <Image HorizontalOptions="CenterAndExpand" Source="nodata.png" VerticalOptions="CenterAndExpand" />
+                        </StackLayout>
+                    </CollectionView.EmptyView>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="model:Favorite">
+                            <Grid Margin="2">
+                                <Frame HeightRequest="125" HasShadow="True" CornerRadius="10" IsClippedToBounds="True" BorderColor="#DDDDDD" BackgroundColor="AliceBlue">
+                                    <Grid ColumnDefinitions="Auto,*" ColumnSpacing="5">
+                                        <Image Grid.Column="0" WidthRequest="175" HeightRequest="175" Source="{Binding Poster}" Aspect="AspectFill" />
+                                        <VerticalStackLayout Grid.Column="1">
+                                            <Label Text="{Binding MovieName}" FontAttributes="Bold" />
+                                            <Label Text="{Binding Score}" FontAttributes="Italic" />
+                                            <Label Text="{Binding MovieNotes}" />
+                                        </VerticalStackLayout>
+                                    </Grid>
+                                </Frame>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                    <!--<CollectionView.Footer>
+                        <ActivityIndicator Grid.RowSpan="2" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" IsRunning="{Binding IsLoading}" IsVisible="{Binding IsLoading}" />
+                    </CollectionView.Footer>-->
+                </CollectionView>
+            </RefreshView>
+        </StackLayout>
+
+        <ActivityIndicator Grid.RowSpan="2" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" />
+
+    </Grid>
+
 
 </ContentPage>
