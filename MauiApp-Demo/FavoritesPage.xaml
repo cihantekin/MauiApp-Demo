@@ -22,13 +22,14 @@
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="model:Favorite">
                             <Grid Margin="2">
-                                <Frame HeightRequest="125" HasShadow="True" CornerRadius="10" IsClippedToBounds="True" BorderColor="#DDDDDD" BackgroundColor="AliceBlue">
+                                <Frame HeightRequest="250" HasShadow="True" CornerRadius="10" IsClippedToBounds="True" BorderColor="#DDDDDD" BackgroundColor="AliceBlue">
                                     <Grid ColumnDefinitions="Auto,*" ColumnSpacing="5">
-                                        <Image Grid.Column="0" WidthRequest="175" HeightRequest="175" Source="{Binding Poster}" Aspect="AspectFill" />
+                                        <Image Grid.Column="0" WidthRequest="175" HeightRequest="220" Margin="0" Source="{Binding Poster}" Aspect="AspectFill" />
                                         <VerticalStackLayout Grid.Column="1">
-                                            <Label Text="{Binding MovieName}" FontAttributes="Bold" />
-                                            <Label Text="{Binding Score}" FontAttributes="Italic" />
-                                            <Label Text="{Binding MovieNotes}" />
+                                            <Label Text="{Binding MovieName}" FontAttributes="Bold" FontSize="Medium" />
+                                            <Label Text="{Binding Score, StringFormat='Personal Score: {0}'}" Margin="0,8,0,0" FontSize="Default" />
+                                            <Label Text="Personal Notes:" Margin="0,3,0,0" FontSize="Default" />
+                                            <Label Text="{Binding MovieNotes}" Margin="0,3,0,0" FontSize="Micro" />
                                         </VerticalStackLayout>
                                     </Grid>
                                 </Frame>
