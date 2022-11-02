@@ -35,7 +35,7 @@ namespace MauiApp_Demo.Services
         public async Task<List<Favorite>> GetFavorites()
         {
             await InitAsync();
-            return await con.Table<Favorite>().ToListAsync();
+            return await con.Table<Favorite>().OrderByDescending(x => x.Score).ToListAsync();
         }
     }
 }
