@@ -59,6 +59,12 @@ public partial class MovieDetailsViewModel : BaseViewModel
         };
 
         await _favoriteService.AddFavorites(favorite);
+        await Shell.Current.GoToAsync(nameof(FavoritesPage), true, new Dictionary<string, object>
+            {
+                {"Movie", movie},
+                {"Genres", genres},
+                {"IsInWatchList", isInWatchList}
+            });
 
     }
 }
