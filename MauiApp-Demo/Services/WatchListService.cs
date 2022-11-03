@@ -44,7 +44,7 @@ namespace MauiApp_Demo.Services
         public async Task<List<WatchList>> GetWatchList()
         {
             await InitAsync();
-            return await con.Table<WatchList>().ToListAsync();
+            return await con.Table<WatchList>().OrderBy(x => x.Id).ToListAsync();
         }
 
         public async Task<bool> IsMovieInWathcList(int movieId)
